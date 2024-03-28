@@ -1,0 +1,398 @@
+
+{% load static %}
+<div class="card--container">
+            <h3 class="main--title"><strong>START TO COPY TRADES IN 3-MINUTES</strong></h3>
+            <!-- Cards -->
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="iconBx">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+                        <div>
+                            <p class="cardName">1. Add Hosting</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="iconBx">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+                        <div>
+                            <p class="cardName">2. Add Master</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="iconBx">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+                        <div>
+                            <p class="cardName">3. Add slave</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div>
+                        <div class="iconBx">
+                            <i class="fa-solid fa-circle-xmark"></i>
+                        </div>
+                        <div>
+                            <p class="cardName">4. Design Copy Setting</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cardBox">
+            <div class="Card">
+                <div>
+
+                    <div>
+                        <div class="CardNumber">0</div>
+                        <div class="CardName">Account Connected</div>
+                        <div class="merger">
+                            <div>
+                                <div class="CardNumber">0</div>
+                                <div class="CardName">Account Inactive</div>
+                            </div>
+                            <div class="IconBx">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="CardNumber">0</div>
+                        <div class="CardName">Account Disconnected</div>
+                    </div>
+
+                    <div class="butn">
+                        <a href="#"><span>View Account</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="Card">
+                <div>
+                    <div>
+                        <div class="CardNumber">0</div>
+                        <div class="CardName">Total Equity</div>
+                        <div class="merger">
+                            <div>
+                                <div class="CardNumber">0</div>
+                                <div class="CardName">Total Balance</div>
+                            </div>
+                            <div class="IconBx">
+                                <i class="fa-solid fa-chart-line"></i>
+                            </div>
+                        </div>
+                        <div class="CardNumber">0</div>
+                        <div class="CardName">Monthly PnL</div>
+                    </div>
+                    <div class="butn">
+                        <a href="#"><span>View Trades</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="Card">
+                <div>
+                    <div>
+                        <div class="CardNumber">0</div>
+                        <div class="CardName">Today's Copied Orders</div>
+                        <div class="merger">
+                            <div>
+                                <div class="CardNumber">0</div>
+                                <div class="CardName">Today's Failed Orders</div>
+                            </div>
+                            <div class="IconBx">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                            </div>
+                        </div>
+                        <div class="CardNumber">0</div>
+                        <div class="CardName">Open Trades</div>
+
+                    </div>
+                    <div class="butn">
+                        <a href="#"><span>View History</span></a>
+                    </div>
+                </div>
+            </div>
+            <div class="Card">
+                <div>
+                    <div>
+                        <div class="CardNumber">0</div>
+                        <div class="CardName">Subscripted Accounts</div>
+                        <div class="merger">
+                            <div>
+                                <div class="CardNumber">0</div>
+
+                                <div class="CardName">Flexible Accounts</div>
+                            </div>
+
+                            <div class="IconBx">
+                                <i class="fa-solid fa-cart-shopping"></i>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="butn">
+                        <a href="#"><span>View Account Hosting</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+<div style="background-color: #016795;" class="card--container">
+    <div style="margin: 10px;" class="row">
+        <div class="col-sm-6  align-items-center justify-content-md-start">
+            <div class="pr-1 mb-3 mb-xl-0">
+                <button onclick="showAccounts()" style="background-color: aqua; color: white;" type="button" id="AccountsButton"
+                    class="btn btn-sm  btn-icon-text ">Accounts</button>
+            </div>
+            <div class="pr-1 mb-3 mb-xl-0">
+                <button onclick="showTrades()" type="button" style="background-color: white; color: #000;" type="button" id="tradesButton"
+                    class="btn btn-sm  btn-icon-text border">Trades</button>
+            </div>
+            <div class="pr-1 mb-3 mb-xl-0">
+                <button onclick="showAnalysis()" type="button" style="background-color: white; color: #000;" type="button" id="AnalysisButton"
+                    class="btn btn-sm btn-icon-text border">Analysis</button>
+            </div>
+            <div class="pr-1 mb-3 mb-xl-0">
+                <button onclick="showHistory()" type="button" style="background-color: white; color: #000;" type="button" id="HistoryButton"
+                    class="btn btn-sm e btn-icon-text border">History</button>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="dov-v d-flex align-items-center justify-content-md-end">
+                <div class="pr-1 mb-3 mr-2 mb-xl-0">
+                    <button style="color: white; background-color: blue;" type="button"
+                        class="btn btn-sm  btn-icon-text "><i class="fa-solid fa-filter"></i>Filter</button>
+                </div>
+                <div class="pr-1 mb-3 mb-xl-0">
+                    <button style="color: white; background-color: blue;" type="button"
+                        class="btn btn-sm btn-icon-text "><i class="fa-solid fa-eye-slash"></i> Columns</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card--container">
+            <div id="content" class="tablular--wrapper">
+                <div>
+                    <div id="Accounts" class="table-container" style="max-height: 500px; overflow-y: scroll;">
+                        <table id="accountTable">
+                            <thead>
+                                <tr>
+                                    <th>Account</th>
+                                    <th>MT</th>
+                                    <th>Balance</th>
+                                    <th>Equity</th>
+                                    <th>Equity %</th>
+                                    <th>Open Trades (Lots)</th>
+                                    <th>Pending</th>
+                                    <th>Day</th>
+                                    <th>Week</th>
+                                    <th>Month</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody id="accountData">
+                                <!-- Account details will be inserted here -->
+                                <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="Trades" class="table-container"
+                        style="max-height: 500px; overflow-y: scroll; display: none;">
+                        <div class="accountTable">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Ticket</th>
+                                        <th>Account</th>
+                                        <th>Open Time</th>
+                                        <th>Symbol</th>
+                                        <th>Type</th>
+                                        <th>Lots</th>
+                                        <th>Open Price</th>
+                                        <th>SL</th>
+                                        <th>TP</th>
+                                        <th>Com</th>
+                                        <th>Swap</th>
+                                        <th>Profit</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="Analysis" class="table-container"
+                        style="max-height: 500px; overflow-y: scroll; display: none;">
+                        <div class="accountTable">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Account</th>
+                                        <th>Growth %</th>
+                                        <th>Profit</th>
+                                        <th>Balance</th>
+                                        <th>Equity</th>
+                                        <th>Trades</th>
+                                        <th>Won</th>
+                                        <th>Lost</th>
+                                        <th>Lots</th>
+                                        <th>Com</th>
+                                        <th>Swap</th>
+                                        <th>Deposits</th>
+                                        <th>Withdrawals</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    <!-- Trade data will be inserted here using JavaScript -->
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div id="History" class="table-container"
+                        style="max-height: 500px; overflow-y: scroll; display: none;">
+                        <div class="accountTable">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Ticket</th>
+                                        <th>Account</th>
+                                        <th>Open Time</th>
+                                        <th>Symbol</th>
+                                        <th>Type</th>
+                                        <th>Lots</th>
+                                        <th>Open Price</th>
+                                        <th>SL</th>
+                                        <th>TP</th>
+                                        <th>Close Time</th>
+                                        <th>Close Price</th>
+                                        <th>Com</th>
+                                        <th>Swap</th>
+                                        <th>Profit</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    <!-- Trade data will be inserted here using JavaScript -->
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+</div>
+<script>
+    function hideAll() {
+        // Define this function to hide all relevant elements
+    }
+
+    function showAccounts() {
+        hideAll();
+        document.getElementById("Accounts").style.display = "block";
+
+        document.getElementById('AccountsButton').style.backgroundColor = 'aqua';
+        document.getElementById('AccountsButton').style.color = 'white';
+        document.getElementById('tradesButton').style.backgroundColor = 'white';
+        document.getElementById('tradesButton').style.color = 'black';
+        document.getElementById('AnalysisButton').style.backgroundColor = 'white';
+        document.getElementById('AnalysisButton').style.color = 'black';
+        document.getElementById('HistoryButton').style.backgroundColor = 'white';
+        document.getElementById('HistoryButton').style.color = 'black';
+    }
+
+    function showTrades() {
+        hideAll();
+        document.getElementById("Trades").style.display = "block";
+
+        document.getElementById('tradesButton').style.backgroundColor = 'aqua';
+        document.getElementById('tradesButton').style.color = 'white';
+
+        document.getElementById('AccountsButton').style.backgroundColor = 'white';
+        document.getElementById('AccountsButton').style.color = 'black';
+        document.getElementById('AnalysisButton').style.backgroundColor = 'white';
+        document.getElementById('AnalysisButton').style.color = 'black';
+        document.getElementById('HistoryButton').style.backgroundColor = 'white';
+        document.getElementById('HistoryButton').style.color = 'black';
+    }
+
+    function showAnalysis() {
+        hideAll();
+        document.getElementById("Analysis").style.display = "block";
+
+        document.getElementById('AnalysisButton').style.backgroundColor = 'aqua';
+        document.getElementById('AnalysisButton').style.color = 'white';
+
+        document.getElementById('AccountsButton').style.backgroundColor = 'white';
+        document.getElementById('AccountsButton').style.color = 'black';
+        document.getElementById('tradesButton').style.backgroundColor = 'white';
+        document.getElementById('tradesButton').style.color = 'black';
+        document.getElementById('HistoryButton').style.backgroundColor = 'white';
+        document.getElementById('HistoryButton').style.color = 'black';
+
+    }
+
+    function showHistory() {
+        hideAll();
+        document.getElementById("History").style.display = "block";
+        document.getElementById('HistoryButton').style.backgroundColor = 'aqua';
+        document.getElementById('HistoryButton').style.color = 'white';
+
+        document.getElementById('AccountsButton').style.backgroundColor = 'white';
+        document.getElementById('AccountsButton').style.color = 'black';
+        document.getElementById('AnalysisButton').style.backgroundColor = 'white';
+        document.getElementById('AnalysisButton').style.color = 'black';
+        document.getElementById('tradesButton').style.backgroundColor = 'white';
+        document.getElementById('tradesButton').style.color = 'black';
+    }
+</script>
