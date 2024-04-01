@@ -1,0 +1,290 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Master Copier Tools</title>
+  <link rel="icon" type="image/png" href=".{% static 'image/logo-mc.png'%}">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<!--    <link rel="stylesheet" href="./css/main.css">-->
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+</head>
+
+<body>
+
+
+  <div>
+    <!-- Header Section -->
+    <header>
+      <div class="header">
+        <nav class="navbar fixed-top navbar-expand-lg navbar navbar-dark bg-white " id="navbar">
+          <div class="container navbar-container">
+            <div class="pull-left">
+              <button class="navbar-toggler text-dark" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i style="color: black;" class="fa fa-navicon"></i>
+              </button>
+              <a class="navbar-brand text-dark bauhaus" href="{% url 'home' %}"><img id="navbar-logo" src="{% static 'image/logo-mc.png' %}"
+                  height="80px" alt="master-copier Light Logo"> Master Copier Tools</a>
+            </div>
+            <div class="navbar-collapse offcanvas-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+
+                <li class="nav-item active ">
+                  <a class="nav-link active text-dark
+
+                  " href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item dropdown d-none d-md-block">
+                  <a class="nav-link text-dark  dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Features
+                  </a>
+                  <div class="dropdown-menu nav-dropdown" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item text-dark  nav-dropdown__item" href="{% url 'Account Manager' %}">Account Manager</a>
+                    <a class="dropdown-item text-dark  nav-dropdown__item" href="{% url 'Trade Copier' %}">Trade Copier</a>
+                  </div>
+                </li>
+                <li class="nav-item d-md-none">
+                  <a class="nav-link  text-dark" href="{% url 'Account Manager' %}">Account Manager</a>
+                </li>
+                <li class="nav-item d-md-none">
+                  <a class="nav-link  text-dark" href="{% url 'Trade Copier' %}">Trade Copier</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'Pricing' %}">Pricing</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'Blog' %}">Blog</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link text-dark" href="{% url 'Contact' %}">Contact</a>
+                </li>
+                <li class="nav-item nav-item__cta_outline">
+                  <a class="nav-link nav-link__cta_outline text-white btn btn-primary btn  rounded-pill mobile-btn btn-green" href="{% url 'register' %}">Get Started</a>
+                </li>
+                <li class="nav-item nav-item__cta_outline">
+                  <a class="nav-link nav-link__cta_outline text-white btn btn-primary btn btn-green rounded-pill mobile-btnn" href="{% url 'login' %}">Login</a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </nav>
+
+
+      <section class="home">
+        <div class="container text-center">
+          <video class="video-background" autoplay loop muted>
+            <source src="{% static 'image/bg-vdo.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+            <div class="row">
+                <div class="col-12 col-md-8 offset-md-2 text-center">
+                  <br><br><br><p><strong> Master Copier Tools</strong> is a web based platform for anyone that uses MT4 and MT5. This cloud 24/7
+                        without the  VPS, allowing you to copy trades to any amount of trading account and much more. </p>
+                    <hr>
+                    <br><a href="{% url 'register' %}" class="btn-got btn-primary btn-lg btn btn-green rounded-pill">GET STARTED</a> <br><br><br>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    </header>
+  </div>
+
+  <section class="key-features-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center order-first">
+                <h2 class="section-header">Key Features</h2>
+            </div>
+        </div><br><br>
+        <div class="row">
+        <div class="col-12 col-md-5 text-center"><img src="{% static 'image/account_management.png' %}" class="img-fluid" alt="">
+        </div>
+        <div class="col-12 col-md-6 order-last text-center text-md-left">
+          <h4 class="feature-heading">Account Manager</h4>
+          <p><strong>Master Copier Tools</strong> allows you to manage an unlimited amount of MT4 and MT5 accounts from
+            <strong>any broker</strong>,
+            all from one platform. There is <strong>no special software</strong>, <strong>no complex
+              configurations</strong> and <strong>no VPS servers required.</strong>
+          </p>
+          <p>Simply upload your account credentials to the platform and your accounts will be hosted securely in the
+            cloud 24/7.
+            Once you have accounts added you can utilise the platform in many ways.
+          </p>
+          <a href="./Account Manager.html" class="btn btn-primary btn btn-green rounded-pill mobile-btn">ACCOUNT
+            MANAGER</a>
+        </div>
+      </div><br><br>
+      <hr>
+        <div class="row">
+            <div class="col-12 col-md-6 order-last order-md-first text-center text-md-left">
+                <br><br><br><h4 class="feature-heading">Trade Copier</h4>
+                <p>The core feature of <strong>Master Copier Tools</strong> is trade copying. Our trade copier is
+                    the <strong>fastest copier in the market with an average replication speed of 50ms.</strong>
+                </p>
+                <p>Once you have your accounts connected to the platform you can setup trade copiers. Trade copiers
+                    are highly configurable with various risk types and settings covering all scenarios.
+                </p>
+                <a href="{% url 'Trade Copier' %}" class="btn btn-primary btn btn-green rounded-pill mobile-btn">TRADE COPIER</a>
+            </div>
+            <div class="col-12 col-md-5 text-center"><img src="{% static 'image/trade copier.png' %}" class="img-fluid" alt=""></div>
+      </div>
+        </div>
+        <hr>
+    </div>
+</section>
+<section class="feature-glance">
+  <div class="container">
+      <div class="row">
+          <div class="col-12 text-center">
+              <h2 class="section-header">Features at a glance</h2>
+          </div><br><br><br>
+      </div>
+      <div class="row">
+          <div class="col-6 col-md-3">
+              <div >
+                  <div class=" text-center">
+                      <i style="color: green;" class="fa fa-tachometer fa-3x" aria-hidden="true"></i>
+                      <p style="color: green;"><strong>No limits</strong></p>
+                      <p>Manage an as many MT4 and MT5 accounts as needed.</p>
+                  </div>
+              </div>
+          </div>
+          <!-- <div class="col-6 col-md-3">
+              <div >
+                  <div class=" text-center">
+                      <i style="color: green;" class="fa fa-random fa-3x" aria-hidden="true"></i>
+                      <p style="color: green;"><strong>Reverse copy</strong></p>
+                      <p>Turn losing strategies into profitable ones.</p>
+                  </div>
+              </div>
+          </div> -->
+          <div class="col-6 col-md-3">
+              <div >
+                  <div class=" text-center">
+                      <i style="color: green;" class="fa fa-users fa-3x" aria-hidden="true"></i>
+                      <p style="color: green;"><strong>Multiple users</strong></p>
+                      <p>Manage your profile as a team.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div >
+                <div class=" text-center">
+                    <i style="color: green;" class="fa fa-desktop fa-3x" aria-hidden="true"></i>
+                    <p style="color: green;"><strong>Web based interface</strong></p>
+                    <p>Manage accounts from the desk or on the go.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div >
+              <div class=" text-center">
+                  <i style="color: green;" class="fa fa-cloud fa-3x" aria-hidden="true"></i>
+                  <p style="color: green;"><strong>No hosting</strong></p>
+                  <p>Accounts hosted securely in the cloud 24/7.</p>
+              </div>
+          </div>
+      </div>
+      </div><br><br>
+
+      <div class="row">
+          <div class="col-6 col-md-3">
+              <div >
+                  <div class=" text-center">
+                      <i style="color: green;" class="fa fa-envelope fa-3x" aria-hidden="true"></i>
+                      <p style="color: green;"><strong>Email alerts</strong></p>
+                      <p>Real time email alerts for any trading activity.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-6 col-md-3">
+              <div >
+                  <div class=" text-center">
+                      <i style="color: green;" class="fa fa-bullhorn fa-3x" aria-hidden="true"></i>
+                      <p style="color: green;"><strong>Push events</strong></p>
+                      <p>Real time trading events for websites or apps.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-6 col-md-3">
+              <div >
+                  <div class=" text-center">
+                      <i style="color: green;" class="fa fa-shield fa-3x" aria-hidden="true"></i>
+                      <p style="color: green;"><strong>Peace of mind</strong></p>
+                      <p>Automated equity monitors.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="col-6 col-md-3">
+              <div >
+                  <div class=" text-center">
+                      <i style="color: green;" class="fa fa-share-alt fa-3x" aria-hidden="true"></i>
+                      <p style="color: green;"><strong>Trade copier</strong></p>
+                      <p>Highly configurable, low latency trade copier.</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section><br><br>
+
+  <!-- Footer Section -->
+  <div class="header-1 text-white py-4">
+    <video class="video-background" autoplay loop muted>
+            <source src="{% static 'image/bg-vdo.mp4' %}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+    <div class="container text-center">
+      <br><br><p class="font-cls">"Stay informed with our newletter for the latest news and updates!"</p><br>
+      <a href="#" class="btn btn-primary btn  rounded-pill mobile-btn btn-green-1">SUBSCRIBE NOW</a><br><br>
+    </div>
+  </div><br><br>
+
+  <section class="footer footer12">
+    <div class="container">
+      <div class="row footer-top">
+        <div class="col-12 col-md-6 text-center text-md-left">
+          <h2>Get Started to Master Copier Tools today!</h2>
+        </div>
+        <div class="col-12 col-md-6 text-center text-md-right">
+          <a class="btn btn-success rounded-pill" href="{% url 'register' %}">GET STARTED</a>
+        </div>
+      </div><br><br>
+      <div class="row footer-bottom text-dark mt-md-0 justify-content-center align-self-center h-100">
+        <div class="col-12 text-dark text-center justify-content-center align-self-center">
+          <small>Copyright © <a href="#">Revobig Technologies</a> 2024</small>
+        </div><br><br>
+        <div class="col-12 text-center">
+          <a style="margin-right: 15px;" href="#"><i class="fa-brands footer-text fa-square-facebook" aria-hidden="true"></i></a>
+          <a style="margin-right: 15px;" href="#"><i class="fa-brands footer-text fa-x-twitter fa-square-x-twitter" aria-hidden="true"></i></a>
+          <a style="margin-right: 15px;" href="#"><i  class="fa-brands footer-text fa-instagram fa-square-instagram" aria-hidden="true"></i></a>
+          <a style="margin-right: 15px;" href="#"><i class="fa-brands footer-text fa-linkedin" aria-hidden="true"></i></a>
+      </div><br><br>
+        <div class="col-12 text-center  text-dark mt-md-0 justify-content-center align-self-center">
+          <a style="margin-right: 15px;" href="#" class="footer-link"><small>Contact us</small></a>
+          <a style="margin-right: 15px;" href="#" class="footer-link"><small>Cookie policy</small></a>
+          <a style="margin-right: 15px;" href="#" class="footer-link"><small>Terms of use</small></a>
+          <a style="margin-right: 15px;" href="#" class="footer-link"><small>Privacy policy</small></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

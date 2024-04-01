@@ -1,0 +1,733 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'ubuntu', sans-serif;
+}
+
+:root {
+  --blue: #016795;
+  --white: #f5f5f5;
+  --grey: #f5f5f5;
+  --black1: #222;
+  --black2: #999;
+  --background: #222; /* Dark background color */
+  --text-color: #f5f5f5; /* Light text color */
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: var(--background); /* Set the background color */
+  color: var(--text-color); /* Set the text color */
+}
+
+.container-2 {
+  position: relative;
+  width: 100%;
+}
+
+.navigation-2 {
+  position: fixed;
+  width: 300px;
+  height: 100%;
+  background: #fff;
+  border-left: 10px solid #fff;
+  transform: 0.5%;
+  overflow: hidden;
+}
+
+.navigation-2.active {
+  width: 80px;
+}
+
+.navigation-2 ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation-2 ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.navigation-2 ul li:hover,
+.navigation-2 ul li.hovered {
+  background: #2fb1f2;
+}
+
+.navigation-2 ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+
+.navigation-2 ul li a {
+  position: relative;
+  display: block;
+  width: 100%;
+  display: flex;
+  text-decoration: none;
+  color: #016795;
+}
+
+.navigation-2 ul li:hover a,
+.navigation-2 ul li.hovered a {
+  color: white;
+}
+
+.navigation-2 ul li a .icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+
+.navigation-2 ul li a .icon i {
+  margin-top: 16px;
+  font-size: 1.0em; /* Adjusted font size */
+}
+
+.navigation-2 ul li a .title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+  font-size: 1.12em; /* Adjusted font size */
+}
+
+/* curve outside */
+
+.navigation-2 ul li:hover a::before,
+.navigation-2 ul li.hovered a::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -50px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px 35px 0 10px #2fb1f2;
+  pointer-events: none;
+}
+
+.navigation-2 ul li:hover a::after,
+.navigation-2 ul li.hovered a::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: -50px;
+  width: 50px;
+  height: 50px;
+  background: transparent;
+  border-radius: 50%;
+  box-shadow: 35px -35px 0 10px #2fb1f2;
+  pointer-events: none;
+}
+
+.nav-active {
+  background-color: #016795;
+}
+
+.nav-active .title,
+.nav-active .icon {
+  color: white;
+}
+
+.main {
+  position: absolute;
+  width: calc(100% - 300px);
+  left: 300px;
+  min-height: 100vh;
+  background: #016795;
+  transition: 0.5%;
+}
+
+.main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+
+.topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  position: sticky; 
+  top: 0; 
+  z-index: 10000; 
+}
+
+.topbar .toggle i {
+  font-size: 1.0em;
+  color: #016795;
+}
+
+.toggle {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+  cursor: pointer;
+}
+
+
+/* Animation for sidebar navigation */
+.navigation-2 {
+  transition: width 0.5s ease; /* Add transition for width change */
+}
+
+/* Adjust font sizes */
+.navigation-2 ul li a,
+.navigation-2 ul li a .icon i,
+.topbar .toggle i {
+  font-size: 1.0em; /* Adjust the font size as desired */
+}
+
+/* Adjust font size for title */
+.navigation-2 ul li a .title {
+  font-size: 1.12em; /* Adjust the font size as desired */
+}
+
+.notification-title {
+  /* Styles for the title */
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.content ul {
+  /* Styles for the list */
+  list-style: none;
+}
+
+.content ul li {
+  /* Styles for list items */
+  margin-bottom: 10px;
+}
+
+#drop-menu {
+  display: none;
+}
+
+.notification-menu {
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  min-width: 10rem;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  list-style: none;
+  background-clip: padding-box;
+  border-radius: 0.25rem;
+  left: auto;
+  padding: 2px;
+  right: -5px;
+  width: 300px;
+  position: absolute;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 5px #016795;
+}
+
+.card--container {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.card--container h3 {
+  background-color: var(--blue);
+  border-radius: 8px;
+  padding: 6px;
+  color: white;
+}
+
+.cardBox {
+  position: relative;
+  width: 100%;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+}
+
+.cardBox .card {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  box-shadow: 0 7px 25px #016795;
+}
+
+.cardBox .card .iconBx {
+  text-align: center;
+  color: rgb(255, 80, 40);
+  font-size: 63px;
+}
+
+.cardBox .card .cardName {
+  text-align: center;
+  border: 1px solid #016795;
+  border-radius: 10px;
+  background-color: #016795;
+  color: white;
+}
+
+.cardBox .card:hover {
+  padding: 20px;
+}
+
+.cardBox .Card {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: start;
+  cursor: pointer;
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+}
+
+.cardBox .Card .merger {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardBox .Card .merger .IconBx i {
+  font-size: 40px;
+}
+
+.butn {
+  text-align: center;
+  border: 1px solid #016795;
+  padding: 4px;
+  border-radius: 10px;
+  background-color: #016795;
+  color: white;
+}
+
+.butn a {
+  text-align: center;
+  text-decoration: none;
+  padding: 4px;
+  list-style: none;
+  color: white;
+}
+
+.butn a:hover {
+  text-align: center;
+  text-decoration: none;
+  padding: 6px;
+  list-style: none;
+  color: white;
+}
+
+
+.account-colm {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.tabular--wrapper {
+  background: #016795;
+  margin-top: 1rem;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 2rem;
+}
+
+.table-container {
+  width: 100%;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead {
+  background-color: #016795;
+  color: white;
+}
+
+th {
+  padding: 15px;
+  text-align: left;
+}
+
+tbody {
+  background-color: #016795;
+}
+
+td {
+  padding: 15px;
+  font-size: 14px;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #016795;
+}
+
+tfoot {
+  background-color: #016795;
+  font-weight: bold;
+  color: white;
+}
+
+tfoot td {
+  padding: 15px;
+}
+
+.table-container button {
+  color: white;
+  background: none;
+  cursor: pointer;
+}
+.col-sm-6{
+  display: flex;
+}
+@media (max-width: 1500px) {
+.dov-v{
+  margin-left: 310px;
+}
+}
+/* Media Queries */
+
+@media (max-width: 1150px) {
+  .dov-v{
+    margin-left: 130px;
+  }
+  .navigation-2.active
+  .dov-v{
+    margin-left: 220px;
+  }
+  .navigation-2 {
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: #fff;
+    border-left: 10px solid #fff;
+    transform: 0.5%;
+    overflow: hidden;
+  }
+  .navigation-2.active {
+    left: 0;
+    width: 300px;
+  }
+  .main.active .cardBox {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .cardBox {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 991px) {
+  .navigation-2 {
+    left: -300px;
+  }
+  .navigation-2.active {
+    left: 0;
+    width: 300px;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active .row{
+    display: block;
+  }
+  .main.active {
+    left: 300px;
+    width: calc(100% - 300px);
+  }
+  .main.active .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 810px) {
+  
+  .navigation-2.active {
+    left: 0;
+    width: 300px;
+  }
+  .main {
+    width: 100%;
+    left: 0;
+  }
+  .main.active .col-sm-6{
+    display: block;
+  }
+  .main.active {
+    left: 300px;
+    width: calc(100% - 300px);
+  }
+  .main.active .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .cardBox {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+.mininav {
+  display: none;
+
+}
+@media (max-width: 500px) {
+
+  .mininav {
+    display: block;
+    right: 320px;
+    /* Adjust the left position as needed */
+    color: #016795;
+    position: fixed;
+    font-size: 43px;
+    z-index: 10001;
+    /* Ensure it's above other elements */
+
+  }
+
+  .mininav.active {
+    display: block;
+    left: 280px;
+    /* Adjust the left position as needed */
+    color: #016795;
+    /* position: fixed; */
+    font-size: 43px;
+    z-index: 10001;
+    /* Ensure it's above other elements */
+
+  }
+
+  .navigation-2 {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+    position: sticky;
+  }
+
+  .navigation-2.active,
+  .main.active {
+    overflow: hidden;
+    position: fixed;
+  }
+
+  .toggle {
+    display: none;
+    z-index: 10001;
+  }
+
+  /* .toggle1 {
+display: block;
+top: 10px;
+left:300px ;
+color: #016795;
+position: fixed;
+font-size: 35px;
+} */
+  .toggle i {
+    font-size: 2em;
+  }
+
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .navigation-2.active {
+    width: 100%;
+    left: 0;
+    bottom: 0%;
+    top: 0%;
+    /* position: fixed; */
+  }
+
+  .topbar {
+    position: fixed;
+    display: flex;
+    justify-content: end;
+  }
+}
+
+/* @media (max-width: 500px) {
+  .navigation-2 {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+    position: sticky;
+  }
+  .navigation-2.active,
+  .main.active {
+    overflow: hidden;
+  }
+  .navigation-2.active {
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+  }
+  .toggle {
+    z-index: 10001;
+  }
+  .main.active .topbar .toggle {
+    color: #016795;
+    position: fixed;
+  }
+  .toggle i {
+    font-size: 2em;
+  }
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .navigation-2 {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+  }
+  .navigation-2.active {
+    width: 100%;
+    left: 0;
+    bottom: 0%;
+    top: 0%;
+    position: fixed;
+  }
+  .toggle {
+    z-index: 10001;
+  }
+  .main.active.toggle {
+    color: #016795;
+    right: 0%;
+    left: initial;
+    bottom: initial;
+    position: fixed;
+  }
+  .main.active .topbar {
+    position: unset;
+  }
+  .main.active {
+    overflow-y: auto;
+  }
+} */
+
+@media (max-width: 320px) {
+  .mininav {
+    display: block;
+    right: 220px;
+    /* Adjust the left position as needed */
+    color: #016795;
+    position: fixed;
+    font-size: 43px;
+    z-index: 10001;
+    /* Ensure it's above other elements */
+
+  }
+  #drop-menu{
+    max-width: 200px;
+  }
+  .col-sm-6{
+    display: block;
+  }
+  .mininav.active {
+    display: block;
+    left: 240px;
+    /* Adjust the left position as needed */
+    color: #016795;
+    /* position: fixed; */
+    font-size: 43px;
+    z-index: 10001;
+    /* Ensure it's above other elements */
+
+  }
+
+  .navigation-2 {
+    width: 100%;
+    left: -100%;
+    z-index: 1000;
+    position: sticky;
+  }
+
+  .navigation-2.active,
+  .main.active {
+    overflow: hidden;
+    position: fixed;
+  }
+
+  .toggle {
+    display: none;
+    z-index: 10001;
+  }
+
+  .toggle i {
+    font-size: 2em;
+  }
+
+  .cardBox {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .navigation-2.active {
+    width: 100%;
+    left: 0;
+    bottom: 0%;
+    top: 0%;
+    /* position: fixed; */
+  }
+
+
+  .topbar {
+    position: fixed;
+    display: flex;
+    justify-content: end;
+  }
+}
+
+
+#accountsBtn .active {
+  background-color: aqua;
+  color: white;
+}
+
+#tradesBtn .active {
+  background-color: aqua;
+  color: white;
+}
+#analysisBtn .active {
+  background-color: aqua;
+  color: white;
+}
+#historyBtn .active {
+  background-color: aqua;
+  color: white;
+}
