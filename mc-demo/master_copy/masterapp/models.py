@@ -29,3 +29,16 @@ class Notify(models.Model):
     def __str__(self):
         return self.email
 
+
+class Account(models.Model):
+    account_type = models.CharField(max_length=50)
+    description_name = models.CharField(max_length=100)
+    account_number = models.CharField(max_length=50)
+    password = models.CharField(max_length=100)
+    broker = models.CharField(max_length=50)
+    server = models.CharField(max_length=50)
+
+    def __str__(self):
+        return f"{self.account_type} - {self.description_name}"
+
+

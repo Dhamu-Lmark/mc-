@@ -1,5 +1,5 @@
 from email.message import EmailMessage
-
+import requests
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib import messages
@@ -219,5 +219,236 @@ def demo(request):
         return redirect('login')
 
 
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.contrib import messages
+from .models import Account
 
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.contrib import messages
+from .models import Account  # Import the Account model
+
+
+# Rename the function to avoid naming conflict
+def account_view(request):
+    logged_in_user = request.session.get('logged_in_user')
+
+    # If the user is logged in
+    if logged_in_user:
+        # Retrieve all accounts from the Account model
+        accounts = Account.objects.all()
+
+        # Render the 'Account.html' template with the accounts data
+        return render(request, 'Account.html', {'accounts': accounts})
+
+    # If the user is not logged in, redirect to the login page
+    else:
+        return redirect('login')
+
+
+def Add_Account(request):
+    logged_in_user = request.session.get('logged_in_user')
+
+    # Redirect to login page if not logged in
+    if not logged_in_user:
+        return redirect('login')
+
+    # Initialize the brokers list
+    brokers = []
+
+    if request.method == 'POST':
+        # Retrieve POST data
+        account_type = request.POST.get('accountType')
+        description_name = request.POST.get('descriptionName')
+        account_number = request.POST.get('accountNumber')
+        password = request.POST.get('password')
+        broker_name = request.POST.get('broker')
+        server_name = request.POST.get('server')
+
+        # Validate user input against account details from the API
+        api_url = 'http://localhost:3000/api/accountDetails'
+        response = requests.get(api_url)
+
+        # Initialize validation flag
+        valid_account = False
+
+        # Check if the API response is successful
+        if response.status_code == 200:
+            # Parse account details from the response
+            account_details = response.json()
+            # Iterate through account details and check for a match
+            for account in account_details:
+                if (
+                        account['accountType'] == account_type and
+                        account['accountNumber'] == account_number and
+                        account['password'] == password and
+                        account['server'] == server_name
+                ):
+                    valid_account = True
+                    break
+
+        # If the account details are valid, save the new account
+        if valid_account:
+            # Create a new account instance
+            account = Account(
+                account_type=account_type,
+                description_name=description_name,
+                account_number=account_number,
+                password=password,
+                broker=broker_name,
+                server=server_name
+            )
+            # Save the new account to the database
+            account.save()
+
+            # Add a success message
+            messages.success(request, 'Account added successfully!')
+
+            # Redirect to the accounts page after adding the account
+            return redirect(reverse('account_view'))
+        else:
+            # Add an error message if the account is not valid
+            messages.error(request, 'No matching account found. Please check your account details.')
+
+    # Handle GET request: fetch brokers and servers from the API
+    # Set a default value for brokers (an empty list)
+    api_url = 'http://localhost:3000/api/brokers'
+    response = requests.get(api_url)
+
+    # Validate the response status code and fetch brokers if successful
+    if response.status_code == 200:
+        brokers = response.json()
+        # Fetch servers for each broker
+        for broker in brokers:
+            broker_name = broker['name']
+            server_url = f'http://localhost:3000/api/brokers/{broker_name}/servers'
+            server_response = requests.get(server_url)
+
+            # Validate server response status code
+            if server_response.status_code == 200:
+                broker['servers'] = server_response.json()
+
+    # Render the template with brokers and servers data
+    return render(request, 'Add Account.html', {
+        'brokers': brokers,
+        'username': logged_in_user
+    })
+
+
+# def Account(request):
+#     logged_in_user = request.session.get('logged_in_user')
+#
+#     # Check if the user is logged in
+#     if logged_in_user:
+#         # Retrieve all accounts from the Account model
+#         accounts = Account.objects.all()
+#
+#         # Render the 'Account.html' template with the accounts
+#         return render(request, 'Account.html', {'accounts': accounts})
+#     else:
+#         # If the user is not logged in, redirect to the login page
+#         return redirect('login')
+#
+#
+#
+# from django.contrib import messages
+#
+#
+# from django.shortcuts import render, redirect
+# from django.urls import reverse
+# from django.http import HttpResponse
+# from .models import Account
+# import requests
+#
+# def Add_Account(request):
+#     # Get logged-in user's name from the session
+#     logged_in_user = request.session.get('logged_in_user')
+#
+#     # Redirect to login page if not logged in
+#     if not logged_in_user:
+#         return redirect('login')
+#
+#     # Handle POST request
+#     if request.method == 'POST':
+#         account_type = request.POST.get('accountType')
+#         description_name = request.POST.get('descriptionName')
+#         account_number = request.POST.get('accountNumber')
+#         password = request.POST.get('password')
+#         broker = request.POST.get('broker')
+#         server = request.POST.get('server')
+#
+#         # Create and save the account
+#         account = Account(
+#             account_type=account_type,
+#             description_name=description_name,
+#             account_number=account_number,
+#             password=password,
+#             broker=broker,
+#             server=server
+#         )
+#         account.save()
+#
+#         # Redirect to the accounts page after adding the account
+#         return redirect(reverse('Account'))
+#
+#     # Handle GET request
+#     # Fetch brokers and servers from the API
+#     api_url = 'http://localhost:3000/api/brokers'
+#     response = requests.get(api_url)
+#     brokers = []
+#
+#     if response.status_code == 200:
+#         brokers = response.json()
+#
+#         # Retrieve servers for each broker
+#         for broker in brokers:
+#             broker_name = broker['name']
+#             server_url = f'http://localhost:3000/api/brokers/{broker_name}/servers'
+#             server_response = requests.get(server_url)
+#             if server_response.status_code == 200:
+#                 broker['servers'] = server_response.json()
+#
+#     # Render the template with brokers and servers
+#     return render(request, 'Add Account.html', {
+#         'brokers': brokers,
+#         'username': logged_in_user
+#     })
+
+
+
+def Trade_Copy(request):
+    logged_in_user = request.session.get('logged_in_user')
+    if logged_in_user:
+        return render(request, 'Trade Copy.html', {'username': logged_in_user})
+    else:
+        return redirect('login')
+def Equity_Monitors(request):
+    logged_in_user = request.session.get('logged_in_user')
+    if logged_in_user:
+        return render(request, 'Equity Monitors.html', {'username': logged_in_user})
+    else:
+        return redirect('login')
+def Email_Alerts(request):
+    logged_in_user = request.session.get('logged_in_user')
+    if logged_in_user:
+        return render(request, 'Email Alerts.html', {'username': logged_in_user})
+    else:
+        return redirect('login')
+
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse
+from .models import Account
+
+
+def delete_account(request, account_id):
+    # Get the account object using the account_id or return a 404 error if not found
+    account = get_object_or_404(Account, id=account_id)
+
+    # Delete the account object
+    account.delete()
+
+    # Redirect to the account listing page after deletion
+    return redirect(reverse('account_view'))
 

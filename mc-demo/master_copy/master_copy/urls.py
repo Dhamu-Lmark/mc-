@@ -37,6 +37,13 @@ urlpatterns = [
     # path('forget_password/', views.forget_password, name='forget_password'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('', views.home, name='home'),
-    path('demo',views.demo, name='demo')
+    path('demo/',views.demo, name='demo'),
+    path('Account/',views.account_view, name='account_view'),
+    path('Trade_copy/',views.Trade_Copy, name='Trade Copy'),
+    path('Equity_Monitors/',views.Equity_Monitors, name='Equity Monitors'),
+    path('Email_Alerts/', views.Email_Alerts, name='Email Alerts'),
+    path('Add_Account/',views.Add_Account, name='Add_Account'),
+    path('account/delete/<int:account_id>/', views.delete_account, name='delete_account'),
+
 ]
 

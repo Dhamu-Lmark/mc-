@@ -5,7 +5,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Email Alerts - Master Copier Tools</title>
     <link rel="icon" type="image/png" href="{% static 'image/logo-mc-1.png' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'dash1.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -13,24 +13,33 @@
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-            input[type="email"] {
-  padding: 8px;
-  margin-right: 10px;
-}
+        /* Style for the mini screen */
+  .mini-screen {
+    display: none; /* Hide mini screen by default */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999; /* Ensure it's above other content */
+  }
 
-button {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-}
-
-
-.hidden {
-  display: none;
-}
-        </style>
+  /* Style for the button */
+  .show-mini-screen-button {
+    padding: 10px 20px;
+    background-color: #016795;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+    </style>
 </head>
 
 <body>
@@ -39,7 +48,7 @@ button {
         <!-- <a class="navbar-brand" href="#"><span class="icon"><img id="navbar-logo" src="{% static 'image/logo-mc.png' %}"
                 height="60px" alt="master-copier Light Logo"></span> <span class="title"
             style="font-size: 25px;">Master Copier Tools</span></a> -->
-        <a style="color: #016795; font-size: 35px;" class="toggle1"><i class="fa-solid fa-bars"></i></a>
+        <a style="color: #016795; font-size: 35px;left: 5px;" class="toggle1"><i class="fa-solid fa-bars"></i></a>
     </div>
     <div class="navigation-2">
         <ul>
@@ -54,31 +63,31 @@ button {
                             style="font-size: 25px;top: 10px;"><img src="{% static 'image/output-onlinepngtools (1).png' %}"
                             height="60px" alt="master-copier Light Logo"></span></a>
             </li>
-            <li class="nav-active">
-                <a href="#">
+            <li >
+                <a href="{% url 'dashboard' %}">
                     <span class="icon"><i class="fa-solid fa-gauge"></i></span>
                     <span class="title">Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li >
+                <a href="{% url 'account_view' %}">
                     <span class="icon"><i class="fa fa-list"></i></span>
                     <span class="title">Accounts</span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{% url 'Trade Copy' %}">
                     <span class="icon"><i class="fa fa-share-alt"></i></span>
                     <span class="title">Trade Copier</span>
                 </a>
             </li>
-            <li>
-                <a href="#">
+            <li >
+                <a href="{% url 'Equity Monitors' %}">
                     <span class="icon"><i class="fa fa-heartbeat"></i></span>
                     <span class="title">Equity Monitors</span>
                 </a>
             </li>
-            <li>
+            <li class="nav-active">
                 <a href="#">
                     <span class="icon"><i class="fas fa-envelope"></i></span>
                     <span class="title">Email Alerts</span>
@@ -161,39 +170,20 @@ button {
                 </div>
             </div>
         </div>
-            {% block content %}
-<div>
-    <br>
-    <div class="card--container">
-        <h1 style="text-align: center; border: #016795;background-color: #016795;color: white; border-radius: 10px;">
-            "Exciting Things Are Coming Soon!"
-        </h1>
-        <!-- Cards -->
-        <br><br><br>
-        <p style="text-align: center;">"We're working hard behind the scenes to bring you an amazing new Updates. Stay tuned for updates!"</p>
-        <br><br>
-<!--        <form style="text-align:center;" method="POST">-->
-<!--        {% csrf_token %}-->
-<!--        <label for="email">Email:</label>-->
-<!--        <input type="email" id="email" name="email" required>-->
-<!--        <button type="submit">Notify</button>-->
-<!--    </form>-->
-        {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+        <div class="card--container">
+        <div>
+            <h3 style="font-size:40px; background-color:#016795;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Email Alerts</h3>
+            <br><div style="margin-left:40px">
+                <h2>No email alerts set up</h2>
+                <p style="text-align: justify; margin-top:5px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Any accounts that you add to the platform or signals you have access to, can be setup to receive real time email alerts for trading events on the account. Trading events can be trade open, trades closes and more.</p>
+                <a href="#" class="btn" style="text-decoration: none;font-size: 22px;background-color: #016795;color: white;">+  Create Email Alert</a>
 
-        <br><br>
-<!--        <p style="text-align: center;" id="success-message" class="hidden">Thank you! We'll notify you once the website is live.</p>-->
-    </div>
-</div>
-{% endblock %}
+            </div>
+        </div>
 
         <div>
         </div>
+    </div>
     </div>
     <script>
         let toggle = document.querySelector('.toggle');
@@ -283,14 +273,6 @@ function toggleNavigation() {
             })
             .catch(error => console.error('Error fetching account data:', error));
 
-document.getElementById("notify-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    var email = this.email.value;
-    // You can handle the email submission here, for example, send it to a backend for processing
-    console.log("Email submitted: " + email);
-    // Reset the form
-    this.reset();
-  });
 
 
 function hideAll() {
@@ -299,10 +281,17 @@ function hideAll() {
     document.getElementById("Analysis").style.display = "none";
     document.getElementById("History").style.display = "none";
 }
+  // Function to show mini screen when button is clicked
+  document.querySelector('.show-mini-screen-button').addEventListener('click', function() {
+    document.querySelector('.mini-screen').style.display = 'block';
+  });
+
+  // Function to close mini screen
+  function closeMiniScreen() {
+    document.querySelector('.mini-screen').style.display = 'none';
+  }
     </script>
 </body>
 
 </html>
-
-
 

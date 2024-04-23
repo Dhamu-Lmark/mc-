@@ -40,7 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'masterapp'
+    'masterapp',
+    'rest_framework',
+    'corsheaders',
+
 ]
 
 MIDDLEWARE = [
@@ -51,6 +54,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'master_copy.urls'
@@ -137,20 +142,22 @@ EMAIL_HOST = 'smtp.gmail.com'  # Your SMTP host
 EMAIL_PORT = 587  # Your SMTP port
 EMAIL_USE_TLS = True  # TLS/SSL settings (use True for TLS, False for SSL, None for no encryption)
 EMAIL_USE_SSL = False
-EMAIL_HOST_USER = 'dhamotharan2107@gmail.com'  # Your email address
-EMAIL_HOST_PASSWORD = 'btuhkwmuxgqxflfp'  # Your email password
+EMAIL_HOST_USER = 'helplinemastercopiertool@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'mzdrnlquqphdrlam'  # Your email password 52424176bbcbd49ce6486258f9170301126f06ef7b9e6068bbd8337dc0a125d3
 DEFAULT_FROM_EMAIL = 'dhamotharan2107@gmail.com'  # The email address to use for the 'From' header
 
 
 
 
+# Allow all origins
+CORS_ALLOW_ALL_ORIGINS = True
 
-#
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
-# EMAIL_HOST_USER = 'dhamu.lmark@gmail.com'
-# EMAIL_HOST_PASSWORD = 'Karhil@2107'
+# Alternatively, you can allow specific origins
+# CORS_ALLOWED_ORIGINS = [
+#     "http://127.0.0.1:3000",
+#     "http://localhost:3000",
+# ]
+
+# Other optional CORS settings
+CORS_ALLOW_CREDENTIALS = True  # Allow credentials (cookies, etc.)
 

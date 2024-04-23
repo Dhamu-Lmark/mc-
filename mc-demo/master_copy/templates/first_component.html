@@ -1,5 +1,43 @@
 
 {% load static %}
+
+<style>
+        #columnOptions {
+            display: none;
+            /* initially hide column options */
+        }
+
+        .columnOptions {
+            max-height: 200px;
+            /* Adjust height as needed */
+            overflow-y: auto;
+            /* Enable vertical scrolling */
+            border: 1px solid #ccc;
+            /* Small border */
+            background-color: #ccc;
+            padding: 10px;
+            /* Add some padding for better appearance */
+        }
+        .card--container {
+        padding: 10px;
+        margin: 20px 70px;
+
+    }
+    .tablular--wrapper {
+        overflow-x: scroll;
+        border-radius: 20px;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    th, td {
+        border: 1px solid white;
+        padding: 15px;
+        text-align: center;
+    }
+    </style>
+
 <div class="card--container">
             <h3 class="main--title"><strong>START TO COPY TRADES IN 3-MINUTES</strong></h3>
             <!-- Cards -->
@@ -67,7 +105,7 @@
                     </div>
 
                     <div class="butn">
-                        <a href="#"><span>View Account</span></a>
+                        <a href="{% url 'account_view' %}"><span>View Account</span></a>
                     </div>
                 </div>
             </div>
@@ -139,199 +177,498 @@
                 </div>
             </div>
         </div>
+<!--<div style="background-color: #016795;" class="card&#45;&#45;container">-->
+<!--    <div style="margin: 10px;" class="row">-->
+<!--        <div class="col-sm-6  align-items-center justify-content-md-start">-->
+<!--            <div class="pr-1 mb-3 mb-xl-0">-->
+<!--                <button onclick="showAccounts()" style="background-color: aqua; color: white;" type="button" id="AccountsButton"-->
+<!--                    class="btn btn-sm  btn-icon-text ">Accounts</button>-->
+<!--            </div>-->
+<!--            <div class="pr-1 mb-3 mb-xl-0">-->
+<!--                <button onclick="showTrades()" type="button" style="background-color: white; color: #000;" type="button" id="tradesButton"-->
+<!--                    class="btn btn-sm  btn-icon-text border">Trades</button>-->
+<!--            </div>-->
+<!--            <div class="pr-1 mb-3 mb-xl-0">-->
+<!--                <button onclick="showAnalysis()" type="button" style="background-color: white; color: #000;" type="button" id="AnalysisButton"-->
+<!--                    class="btn btn-sm btn-icon-text border">Analysis</button>-->
+<!--            </div>-->
+<!--            <div class="pr-1 mb-3 mb-xl-0">-->
+<!--                <button onclick="showHistory()" type="button" style="background-color: white; color: #000;" type="button" id="HistoryButton"-->
+<!--                    class="btn btn-sm e btn-icon-text border">History</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="col-sm-6">-->
+<!--            <div class="dov-v d-flex align-items-center justify-content-md-end">-->
+<!--                <div class="pr-1 mb-3 mr-2 mb-xl-0">-->
+<!--                    <button style="color: white; background-color: blue;" type="button"-->
+<!--                        class="btn btn-sm  btn-icon-text "><i class="fa-solid fa-filter"></i>Filter</button>-->
+<!--                </div>-->
+<!--                <div class="pr-1 mb-3 mb-xl-0">-->
+<!--                    <button style="color: white; background-color: blue;" type="button"-->
+<!--                        class="btn btn-sm btn-icon-text "><i class="fa-solid fa-eye-slash"></i> Columns</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="card&#45;&#45;container">-->
+<!--            <div id="content" class="tablular&#45;&#45;wrapper">-->
+<!--                <div>-->
+<!--                    <div id="Accounts" class="table-container" style="max-height: 500px; overflow-y: scroll;">-->
+<!--                        <table id="accountTable">-->
+<!--                            <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Account</th>-->
+<!--                                    <th>MT</th>-->
+<!--                                    <th>Balance</th>-->
+<!--                                    <th>Equity</th>-->
+<!--                                    <th>Equity %</th>-->
+<!--                                    <th>Open Trades (Lots)</th>-->
+<!--                                    <th>Pending</th>-->
+<!--                                    <th>Day</th>-->
+<!--                                    <th>Week</th>-->
+<!--                                    <th>Month</th>-->
+<!--                                    <th>Total</th>-->
+<!--                                </tr>-->
+<!--                            </thead>-->
+<!--                            <tbody id="accountData">-->
+<!--                                &lt;!&ndash; Account details will be inserted here &ndash;&gt;-->
+<!--                                <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </div>-->
+<!--                    <div id="Trades" class="table-container"-->
+<!--                        style="max-height: 500px; overflow-y: scroll; display: none;">-->
+<!--                        <div class="accountTable">-->
+<!--                            <table>-->
+<!--                                <thead>-->
+<!--                                    <tr>-->
+<!--                                        <th>ID</th>-->
+<!--                                        <th>Ticket</th>-->
+<!--                                        <th>Account</th>-->
+<!--                                        <th>Open Time</th>-->
+<!--                                        <th>Symbol</th>-->
+<!--                                        <th>Type</th>-->
+<!--                                        <th>Lots</th>-->
+<!--                                        <th>Open Price</th>-->
+<!--                                        <th>SL</th>-->
+<!--                                        <th>TP</th>-->
+<!--                                        <th>Com</th>-->
+<!--                                        <th>Swap</th>-->
+<!--                                        <th>Profit</th>-->
+<!--                                    </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody >-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="Analysis" class="table-container"-->
+<!--                        style="max-height: 500px; overflow-y: scroll; display: none;">-->
+<!--                        <div class="accountTable">-->
+<!--                            <table>-->
+<!--                                <thead>-->
+<!--                                    <tr>-->
+<!--                                        <th>Account</th>-->
+<!--                                        <th>Growth %</th>-->
+<!--                                        <th>Profit</th>-->
+<!--                                        <th>Balance</th>-->
+<!--                                        <th>Equity</th>-->
+<!--                                        <th>Trades</th>-->
+<!--                                        <th>Won</th>-->
+<!--                                        <th>Lost</th>-->
+<!--                                        <th>Lots</th>-->
+<!--                                        <th>Com</th>-->
+<!--                                        <th>Swap</th>-->
+<!--                                        <th>Deposits</th>-->
+<!--                                        <th>Withdrawals</th>-->
+<!--                                    </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody >-->
+<!--                                    &lt;!&ndash; Trade data will be inserted here using JavaScript &ndash;&gt;-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="History" class="table-container"-->
+<!--                        style="max-height: 500px; overflow-y: scroll; display: none;">-->
+<!--                        <div class="accountTable">-->
+<!--                            <table>-->
+<!--                                <thead>-->
+<!--                                    <tr>-->
+<!--                                        <th>ID</th>-->
+<!--                                        <th>Ticket</th>-->
+<!--                                        <th>Account</th>-->
+<!--                                        <th>Open Time</th>-->
+<!--                                        <th>Symbol</th>-->
+<!--                                        <th>Type</th>-->
+<!--                                        <th>Lots</th>-->
+<!--                                        <th>Open Price</th>-->
+<!--                                        <th>SL</th>-->
+<!--                                        <th>TP</th>-->
+<!--                                        <th>Close Time</th>-->
+<!--                                        <th>Close Price</th>-->
+<!--                                        <th>Com</th>-->
+<!--                                        <th>Swap</th>-->
+<!--                                        <th>Profit</th>-->
+<!--                                    </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody >-->
+<!--                                    &lt;!&ndash; Trade data will be inserted here using JavaScript &ndash;&gt;-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                    <td></td>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
+<!--                        </div>-->
+<!--                    </div>-->
 <div style="background-color: #016795;" class="card--container">
-    <div style="margin: 10px;" class="row">
-        <div class="col-sm-6  align-items-center justify-content-md-start">
-            <div class="pr-1 mb-3 mb-xl-0">
-                <button onclick="showAccounts()" style="background-color: aqua; color: white;" type="button" id="AccountsButton"
-                    class="btn btn-sm  btn-icon-text ">Accounts</button>
-            </div>
-            <div class="pr-1 mb-3 mb-xl-0">
-                <button onclick="showTrades()" type="button" style="background-color: white; color: #000;" type="button" id="tradesButton"
-                    class="btn btn-sm  btn-icon-text border">Trades</button>
-            </div>
-            <div class="pr-1 mb-3 mb-xl-0">
-                <button onclick="showAnalysis()" type="button" style="background-color: white; color: #000;" type="button" id="AnalysisButton"
-                    class="btn btn-sm btn-icon-text border">Analysis</button>
-            </div>
-            <div class="pr-1 mb-3 mb-xl-0">
-                <button onclick="showHistory()" type="button" style="background-color: white; color: #000;" type="button" id="HistoryButton"
-                    class="btn btn-sm e btn-icon-text border">History</button>
+            <div style="margin: 6px;" class="row ">
+                <div class="col-sm-6  align-items-center justify-content-md-start">
+                    <!-- <div class="pr-1 mb-3 mb-xl-0">
+                        <button onclick="showAccounts()" style="background-color: aqua; color: white;" type="button" id="AccountsButton"
+                            class=" btn btn-sm  btn-icon-text ">Accounts</button>
+                    </div>
+                    <div class="pr-1 mb-3 mb-xl-0">
+                        <button onclick="showTrades()" type="button" style="background-color: white; color: #000;" type="button" id="tradesButton"
+                            class="btn btn-sm  btn-icon-text border">Trades</button>
+                    </div>
+                    <div class="pr-1 mb-3 mb-xl-0">
+                        <button onclick="showAnalysis()" type="button" style="background-color: white; color: #000;" type="button" id="AnalysisButton"
+                            class="btn btn-sm btn-icon-text border">Analysis</button>
+                    </div>
+                    <div class="pr-1 mb-3 mb-xl-0">
+                        <button onclick="showHistory()" type="button" style="background-color: white; color: #000;" type="button" id="HistoryButton"
+                            class="btn btn-sm e btn-icon-text border">History</button>
+                    </div> -->
+                    <div class="pr-1 mb-3 mb-xl-0">
+                        <button style="background-color: white;color: #000;" type="button" id="AccountsButton"
+                            class="btn btn-sm button-og btn-icon-text "
+                            onclick="toggleTable('accountTable', 'Account,MT,Balance,Equity,Equity %,Free Margin,Used Margin,Open Trades (Lots),Pending,Day,Week,Month,Total')">Account</button>
+                    </div>
+                    <div class="pr-1 mb-3 mb-xl-0">
+                        <button style="background-color: white;color: #000;" type="button" id="AnalysisButton"
+                            class="btn btn-sm button-og btn-icon-text border"
+                            onclick="toggleTable('analysisTable','Account,Growth %,Profit,Balance,Equity,Trades,Won,Lost,Lots,Com,Swap,Deposits,Withdrawals' )">Analysis</button>
+                    </div>
+                    <div class="pr-1 mb-3 mb-xl-0">
+                        <button style="background-color: white;color: #000;" type="button" id="tradesButton"
+                            class="btn btn-sm button-og btn-icon-text border"
+                            onclick="toggleTable('tradesTable', 'ID,Ticket,Account,Open Time,Symbol,Type,Lots,Open Price,SL,TP,Com,Swap,Profit,Magic,Comment' )">Trades</button>
+                    </div>
+                    <div class="pr-1 mb-3 mb-xl-0">
+                        <button style="background-color: white;color: #000;" type="button" id="HistoryButton"
+                            class="btn btn-sm button-og btn-icon-text border"
+                            onclick="toggleTable('historyTable', 'ID,Ticket,Account,Open Time,Symbol,Type,Lots,Open Price,SL,TP,Close Time,Close Price,Com,Swap,Profit')">History</button>
+                    </div>
+
+
+
+
+                </div>
+                <div style="right: 90px;" class="col-sm-6">
+                    <div class="dov-v d-flex align-items-center justify-content-md-end">
+                        <div class="pr-1 mb-3 mr-2 mb-xl-0">
+                            <button style="color: white; background-color: blue;" type="button"
+                                class="btn btn-sm  btn-icon-text "><i class="fa-solid fa-filter"></i>Filter</button>
+                        </div>
+                        <!-- <div class="pr-1 mb-3 mb-xl-0">
+                            <button style="color: white; background-color: blue;" type="button"
+                                class="btn btn-sm btn-icon-text "><i class="fa-solid fa-eye-slash"></i> Columns</button>
+                        </div> -->
+                        <div id="columnButton" class="pr-1 mb-3 mb-xl-0" style="display: block;">
+                            <button style="color: white; background-color: blue;" type="button"
+                                class="btn btn-sm btn-icon-text " onclick="toggleColumnOptions()"><i
+                                    class="fa-solid fa-eye-slash"></i> Columns</button></button>
+                            <div id="columnOptions" class="columnOptions"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-sm-6">
-            <div class="dov-v d-flex align-items-center justify-content-md-end">
-                <div class="pr-1 mb-3 mr-2 mb-xl-0">
-                    <button style="color: white; background-color: blue;" type="button"
-                        class="btn btn-sm  btn-icon-text "><i class="fa-solid fa-filter"></i>Filter</button>
+
+
+        <div class="card--container" style="padding: 10px;margin:20px 70px;">
+            <div id="content" class="tablular--wrapper">
+                <div>
+                    <!-- <div id="Accounts"> -->
+                    <table id="accountTable" class=" table-container"
+                        style="max-height: 500px; overflow-y: scroll; display: none;">
+                        <thead>
+                            <tr>
+                                <th>Account</th>
+                                <th>MT</th>
+                                <th>Balance</th>
+                                <th>Equity</th>
+                                <th>Equity %</th>
+                                <th>Free Margin</th>
+                                <th>Used Margin</th>
+                                <th>Open Trades (Lots)</th>
+                                <th>Pending</th>
+                                <th>Day</th>
+                                <th>Week</th>
+                                <th>Month</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="pr-1 mb-3 mb-xl-0">
-                    <button style="color: white; background-color: blue;" type="button"
-                        class="btn btn-sm btn-icon-text "><i class="fa-solid fa-eye-slash"></i> Columns</button>
+                </div>
+                <div id="content" class="tablular--wrapper">
+                    <div>
+                    <table id="analysisTable" class="table-container"
+                        style="max-height: 500px; overflow-y: scroll; display: none;">
+                        <thead>
+                            <tr>
+                                <th>Account</th>
+                                <th>Growth %</th>
+                                <th>Profit</th>
+                                <th>Balance</th>
+                                <th>Equity</th>
+                                <th>Trades</th>
+                                <th>Won</th>
+                                <th>Lost</th>
+                                <th>Lots</th>
+                                <th>Com</th>
+                                <th>Swap</th>
+                                <th>Deposits</th>
+                                <th>Withdrawals</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                    </div>
+                    <div id="content" class="tablular--wrapper">
+                        <div>
+                    <table id="tradesTable" class="table-container"
+                        style="max-height: 500px; overflow-y: scroll; display: none;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ticket</th>
+                                <th>Account</th>
+                                <th>Open Time</th>
+                                <th>Symbol</th>
+                                <th>Type</th>
+                                <th>Lots</th>
+                                <th>Open Price</th>
+                                <th>SL</th>
+                                <th>TP</th>
+                                <th>Com</th>
+                                <th>Swap</th>
+                                <th>Profit</th>
+                                <th>Magic</th>
+                                <th>Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                        </div>
+                    </div>
+                    <div id="content" class="tablular--wrapper">
+                        <div>
+                    <table id="historyTable" class="table-container"
+                        style="max-height: 500px;overflow-y: scroll; display: none;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Ticket</th>
+                                <th>Account</th>
+                                <th>Open Time</th>
+                                <th>Symbol</th>
+                                <th>Type</th>
+                                <th>Lots</th>
+                                <th>Open Price</th>
+                                <th>SL</th>
+                                <th>TP</th>
+                                <th>Close Time</th>
+                                <th>Close Price</th>
+                                <th>Com</th>
+                                <th>Swap</th>
+                                <th>Profit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-    <div class="card--container">
-            <div id="content" class="tablular--wrapper">
-                <div>
-                    <div id="Accounts" class="table-container" style="max-height: 500px; overflow-y: scroll;">
-                        <table id="accountTable">
-                            <thead>
-                                <tr>
-                                    <th>Account</th>
-                                    <th>MT</th>
-                                    <th>Balance</th>
-                                    <th>Equity</th>
-                                    <th>Equity %</th>
-                                    <th>Open Trades (Lots)</th>
-                                    <th>Pending</th>
-                                    <th>Day</th>
-                                    <th>Week</th>
-                                    <th>Month</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody id="accountData">
-                                <!-- Account details will be inserted here -->
-                                <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="Trades" class="table-container"
-                        style="max-height: 500px; overflow-y: scroll; display: none;">
-                        <div class="accountTable">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Ticket</th>
-                                        <th>Account</th>
-                                        <th>Open Time</th>
-                                        <th>Symbol</th>
-                                        <th>Type</th>
-                                        <th>Lots</th>
-                                        <th>Open Price</th>
-                                        <th>SL</th>
-                                        <th>TP</th>
-                                        <th>Com</th>
-                                        <th>Swap</th>
-                                        <th>Profit</th>
-                                    </tr>
-                                </thead>
-                                <tbody >
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="Analysis" class="table-container"
-                        style="max-height: 500px; overflow-y: scroll; display: none;">
-                        <div class="accountTable">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Account</th>
-                                        <th>Growth %</th>
-                                        <th>Profit</th>
-                                        <th>Balance</th>
-                                        <th>Equity</th>
-                                        <th>Trades</th>
-                                        <th>Won</th>
-                                        <th>Lost</th>
-                                        <th>Lots</th>
-                                        <th>Com</th>
-                                        <th>Swap</th>
-                                        <th>Deposits</th>
-                                        <th>Withdrawals</th>
-                                    </tr>
-                                </thead>
-                                <tbody >
-                                    <!-- Trade data will be inserted here using JavaScript -->
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div id="History" class="table-container"
-                        style="max-height: 500px; overflow-y: scroll; display: none;">
-                        <div class="accountTable">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>ID</th>
-                                        <th>Ticket</th>
-                                        <th>Account</th>
-                                        <th>Open Time</th>
-                                        <th>Symbol</th>
-                                        <th>Type</th>
-                                        <th>Lots</th>
-                                        <th>Open Price</th>
-                                        <th>SL</th>
-                                        <th>TP</th>
-                                        <th>Close Time</th>
-                                        <th>Close Price</th>
-                                        <th>Com</th>
-                                        <th>Swap</th>
-                                        <th>Profit</th>
-                                    </tr>
-                                </thead>
-                                <tbody >
-                                    <!-- Trade data will be inserted here using JavaScript -->
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-</div>
+    </div>
+    </div>
+    <script>
+        function toggleTable(tableId, columns) {
+            var tables = document.getElementsByTagName('table');
+            for (var i = 0; i < tables.length; i++) {
+                tables[i].style.display = 'none'; // hide all tables
+            }
+            document.getElementById(tableId).style.display = 'table'; // show selected table
+
+
+            // Set button styles based on active table
+            var buttons = document.getElementsByClassName('button');
+            for (var i = 0; i < buttons.length; i++) {
+                if (buttons[i].id === tableId + 'Button') {
+                    buttons[i].classList.add('active');
+                } else {
+                    buttons[i].classList.remove('active');
+                }
+            }
+
+            // Show column button
+            var columnButton = document.getElementById('columnButton');
+            columnButton.style.display = 'block';
+            var columnOptions = document.getElementById('columnOptions');
+            columnOptions.innerHTML = ''; // Clear previous options
+
+            columns.split(',').forEach(function (column) {
+                var checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.value = column;
+                checkbox.checked = true; // By default, all columns are checked
+                checkbox.onclick = function () {
+                    toggleColumn(tableId, column);
+                };
+
+                var label = document.createElement('label');
+                label.appendChild(document.createTextNode(column));
+
+                columnOptions.appendChild(checkbox);
+                columnOptions.appendChild(label);
+                columnOptions.appendChild(document.createElement('br'));
+            });
+
+        }
+        var buttons = document.getElementsByClassName('button-og');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].addEventListener('click', function () {
+                // Reset styles for all buttons
+                for (var j = 0; j < buttons.length; j++) {
+                    buttons[j].style.backgroundColor = 'white';
+                    buttons[j].style.color = '#000';
+                }
+                // Apply styles to the clicked button
+                this.style.backgroundColor = 'aqua';
+                this.style.color = 'white';
+            });
+        }
+        function toggleColumnOptions() {
+            var columnOptions = document.getElementById('columnOptions');
+            columnOptions.style.display = columnOptions.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // function toggleColumn(tableId, columnName) {
+        //     var table = document.getElementById(tableId);
+        //     var columnIndex = Array.from(table.rows[0].cells).findIndex(cell => cell.textContent.trim() === columnName);
+
+        //     for (var i = 0; i < table.rows.length; i++) {
+        //         var row = table.rows[i];
+        //         var cell = row.cells[columnIndex];
+        //         if (cell) {
+        //             cell.style.display = cell.style.display === 'none' ? '' : 'none';
+        //         }
+        //     }
+        // }
+
+
+
+        // Toggle the display of the column
+        function toggleColumn(tableId, columnName) {
+            var table = document.getElementById(tableId);
+            var columnIndex = -1;
+            var headerRow = table.rows[0];
+            for (var i = 0; i < headerRow.cells.length; i++) {
+                if (headerRow.cells[i].textContent === columnName) {
+                    columnIndex = i;
+                    break;
+                }
+            }
+            if (columnIndex === -1) {
+                console.log("Column not found");
+                return;
+            }
+            var rows = table.rows;
+            for (var i = 0; i < rows.length; i++) {
+                var cells = rows[i].cells;
+                if (cells.length > columnIndex) {
+                    var cell = cells[columnIndex];
+                    if (cell.style.display === 'none') {
+                        cell.style.display = '';
+                    } else {
+                        cell.style.display = 'none';
+                    }
+                }
+            }
+        }
+
+
+    </script>
+
 <script>
     function hideAll() {
         // Define this function to hide all relevant elements

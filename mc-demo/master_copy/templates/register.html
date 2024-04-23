@@ -46,7 +46,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration Page</title>
-  <link rel="icon" type="image/png" href="{% static 'image/logo-mc.png' %}">
+  <link rel="icon" type="image/png" href="{% static 'image/logo-mc-1.png' %}">
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -101,8 +101,9 @@
       <div class="col-md-6 offset-md-3">
         <div class="register-container">
           <div class="form-group mb-lg">
-            <a style="list-style: none; text-decoration: none; color: white;" href="{% url 'home' %}"><img src="{% static 'image/logo-mc.png' %}" width="37px" alt="Logo">Master Copier Tools</a>
-            <h5 class="pull-right"><i class="fa-solid fa-user"></i>Register</h5>
+<a style="list-style: none; text-decoration: none; color: white;" href="{% url 'home' %}"><img id="navbar-logo" src="{% static 'image/logo-mc-1.png' %}"
+                  height="80px" alt="master-copier Light Logo"><span><img src="{% static 'image/output-pngtools.png' %}"
+                            height="60px" alt="master-copier Light Logo"></span></a>            <h5 class="pull-right"><i class="fa-solid fa-user"></i>Register</h5>
           </div>
           <form  action="{% url 'register' %}" method="post">
                     {% csrf_token %}
