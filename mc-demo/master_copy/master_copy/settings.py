@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'masterapp',
     'rest_framework',
-    'corsheaders',
 
 ]
 
@@ -54,7 +53,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
 
@@ -149,15 +147,15 @@ DEFAULT_FROM_EMAIL = 'dhamotharan2107@gmail.com'  # The email address to use for
 
 
 
-# Allow all origins
-CORS_ALLOW_ALL_ORIGINS = True
+# # Allow all origins
+# CORS_ALLOW_ALL_ORIGINS = True
 
-# Alternatively, you can allow specific origins
-# CORS_ALLOWED_ORIGINS = [
-#     "http://127.0.0.1:3000",
-#     "http://localhost:3000",
-# ]
+# # Alternatively, you can allow specific origins
+# # CORS_ALLOWED_ORIGINS = [
+# #     "http://127.0.0.1:3000",
+# #     "http://localhost:3000",
+# # ]
 
-# Other optional CORS settings
-CORS_ALLOW_CREDENTIALS = True  # Allow credentials (cookies, etc.)
+# # Other optional CORS settings
+# CORS_ALLOW_CREDENTIALS = True  # Allow credentials (cookies, etc.)
 
